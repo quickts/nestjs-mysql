@@ -1,0 +1,1 @@
+export { PoolConfig } from "mysql";
