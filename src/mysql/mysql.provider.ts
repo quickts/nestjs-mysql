@@ -1,11 +1,10 @@
 import { Provider } from "@nestjs/common";
-import { PoolConfig } from "./mysql.interface";
-import { MysqlClient } from "./mysql.client";
+import { PoolConfig } from "promise-mysql";
+import { MYSQL_POOL_OPTIONS } from "./mysql.constants";
 
-export function createProvider(options: PoolConfig, token?: any): Provider<MysqlClient> {
-    const client = new MysqlClient(options);
+export function createOptionProvider(options: PoolConfig): Provider<PoolConfig> {
     return {
-        provide: token === undefined ? MysqlClient : token,
-        useValue: client
+        provide: MYSQL_POOL_OPTIONS,
+        useValue: options
     };
 }

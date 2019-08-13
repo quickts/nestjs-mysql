@@ -1,16 +1,32 @@
 import { Global, Module, DynamicModule } from "@nestjs/common";
-import { PoolConfig } from "./mysql.interface";
-import { createProvider } from "./mysql.provider";
+import { PoolConfig } from "promise-mysql";
+import { createOptionProvider } from "./mysql.provider";
+import { MysqlService } from "./mysql.service";
+import { ScannerModule } from "@quickts/nestjs-scanner";
+
+@Module({})
+export class MysqlModule {
+    static forRoot(options: PoolConfig): DynamicModule {
+        const optionProvider = createOptionProvider(options);
+        return {
+            module: MysqlModule,
+            imports: [ScannerModule.forRoot(false)],
+            providers: [optionProvider, MysqlService],
+            exports: [MysqlService]
+        };
+    }
+}
 
 @Global()
 @Module({})
-export class MysqlModule {
-    static forRoot(options: PoolConfig, token?: any): DynamicModule {
-        const provider = createProvider(options, token);
+export class MysqlGlobalModule {
+    static forRoot(options: PoolConfig): DynamicModule {
+        const optionProvider = createOptionProvider(options);
         return {
             module: MysqlModule,
-            providers: [provider],
-            exports: [provider]
+            imports: [ScannerModule.forRoot(true)],
+            providers: [optionProvider, MysqlService],
+            exports: [MysqlService]
         };
     }
 }

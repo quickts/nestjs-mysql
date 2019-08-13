@@ -11,24 +11,29 @@
     "start:prod": "node dist/index.js",
     "test": "mocha -r tsconfig-paths/register -r ts-node/register --recursive -R spec test/*.ts"
   },
-  "keywords": ["quickts", "nestjs-mysql"],
+  "keywords": [
+    "quickts",
+    "nestjs-mysql"
+  ],
   "author": "quickts",
   "license": "MIT",
   "devDependencies": {
-    "@nestjs/common": "^6.1.1",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^12.0.0",
-    "mocha": "^6.1.4",
-    "reflect-metadata": "^0.1.13",
+    "@nestjs/common": "^6.5.3",
+    "@nestjs/core": "^6.5.3",
+    "@nestjs/platform-express": "^6.5.3",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.1",
+    "promise-mysql": "^4.1.0",
+    "mocha": "^6.2.0",
     "rimraf": "^2.6.3",
     "rxjs": "^6.5.2",
-    "ts-node": "^8.1.0",
+    "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
-    "typescript": "^3.4.5"
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@types/mysql": "^2.15.6",
-    "mysql": "^2.17.1"
+    "@quickts/nestjs-scanner": "^1.0.3"
   },
   "files": [
     "dist"
