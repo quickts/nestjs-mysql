@@ -23,7 +23,7 @@ export class MysqlGlobalModule {
     static forRoot(options: PoolConfig): DynamicModule {
         const optionProvider = createOptionProvider(options);
         return {
-            module: MysqlModule,
+            module: MysqlGlobalModule,
             imports: [ScannerModule.forRoot(true)],
             providers: [optionProvider, MysqlService],
             exports: [MysqlService]
